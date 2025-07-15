@@ -1,0 +1,11 @@
+AskText = input("Please give me a text: ").lower()
+askFirstLetter = input("Give me 1 letter: ").lower()
+askSecondLetter = input("Give me another letter: ").lower()
+askthirdLetter = input("Give me a third letter: ").lower()
+print(f"The letter {askFirstLetter} appers {AskText.count(askFirstLetter)} times, and the letter {askSecondLetter} appears {AskText.count(askSecondLetter)} times, and the letter {askthirdLetter} appears {AskText.count(askthirdLetter)} times in the text.")
+TextSplit = AskText.split() #split by "space" 
+print(f"The text has {len(TextSplit)} words in total.")
+print(f"the first letter is {AskText[0]} and last letter is {AskText[-1]}")
+TextSplit.reverse()
+reverse_list = " ".join(TextSplit)
+print(f"The text reverse is {reverse_list}")
