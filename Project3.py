@@ -1,3 +1,4 @@
+#Third Class Python ("Project")
 AskText = input("Please give me a text: ").lower()
 askFirstLetter = input("Give me 1 letter: ").lower()
 askSecondLetter = input("Give me another letter: ").lower()
