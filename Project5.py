@@ -1,76 +1,66 @@
 import random as rd
 
-PALABRAS = ['kevin', 'estiven', 'yepes', 'villareal', 'developer']
+WORDS = ['kevin', 'estiven', 'yepes', 'villareal', 'developer']
 
+# 🔧 FUNCTIONS
+def choose_word(words):
+    """🎯 Returns a random word from the list."""
+    return rd.choice(words)
 
-# Funciones 
-def elegir_palabra(palabras):
-    """Devuelve una palabra elegida al azar de la lista."""
-    return rd.choice(palabras)
+def create_blanks(word):
+    """📝 Creates a list of underscores according to the length of the word."""
+    return ["_"] * len(word)
 
+def show_progress(blanks):
+    """👀 Prints the current guessed word with spaces."""
+    print("Word:", " ".join(blanks))
 
-def crear_guiones(palabra):
-    """Crea la lista de guiones inicial según la longitud de la palabra."""
-    return ["_"] * len(palabra)
-
-
-def mostrar_progreso(guiones):
-    """Imprime la palabra parcial con espacios."""
-    print("Palabra:", " ".join(guiones))
-
-
-def actualizar_guiones(palabra, guiones, letra):
+def update_blanks(word, blanks, letter):
     """
-    Reemplaza guiones por la letra cuando acierta.
-    Devuelve True si la letra estaba en la palabra, False si no.
+    ✏️ Replaces underscores with the letter when correct.
+    Returns True if the letter was found in the word, False otherwise.
     """
-    acierto = False
-    for i, c in enumerate(palabra): # el índice (posición) de cada letra , el carácter de esa posicion
-        if c == letra:
-            guiones[i] = letra
-            acierto = True
-    return acierto
+    hit = False
+    for i, c in enumerate(word):  # i = index (position), c = character
+        if c == letter:
+            blanks[i] = letter
+            hit = True
+    return hit
 
+def is_word_complete(blanks):
+    """✅ Returns True if there are no underscores left."""
+    return "_" not in blanks
 
-def palabra_completa(guiones):
-    """True si ya no quedan guiones."""
-    return "_" not in guiones
+# 🎮 MAIN GAME LOGIC
+def play_hangman(words=WORDS, lives=5):
+    word = choose_word(words)
+    blanks = create_blanks(word)
 
+    print("🎉 Welcome to the Hangman Game!")
+    show_progress(blanks)
 
-# --------------------------
-# Lógica principal del juego
-# --------------------------
-def jugar_ahorcado(palabras=PALABRAS, vidas=5):
-    palabra = elegir_palabra(palabras)
-    guiones = crear_guiones(palabra)
-
-    print("¡Bienvenido al juego de adivinar la palabra!")
-    mostrar_progreso(guiones)
-
-    while vidas > 0:
-        letra = input("Dime una letra para adivinar tu palabra: ").lower().strip()
-        if not letra:
-            print("No ingresaste nada. Intenta de nuevo.")
+    while lives > 0:
+        letter = input("🔤 Type a letter to guess the word: ").lower().strip()
+        if not letter:
+            print("⚠️ You didn't type anything. Try again.")
             continue
-        letra = letra[0]  # por si el usuario escribe más de un carácter
+        letter = letter[0]  # Only take the first character if user types more than one
 
-        acierto = actualizar_guiones(palabra, guiones, letra)
+        hit = update_blanks(word, blanks, letter)
 
-        if acierto:
-            print(f"¡Bien! La letra está en la palabra: {' '.join(guiones)}")
+        if hit:
+            print(f"🎯 Great! The letter is in the word: {' '.join(blanks)}")
         else:
-            vidas -= 1
-            print(f"No está en la palabra: {' '.join(guiones)}. Te quedan {vidas} vidas.")
+            lives -= 1
+            print(f"❌ Not in the word: {' '.join(blanks)}. Lives left: {lives}.")
 
-        if palabra_completa(guiones):
-            print(f"¡Felicidades! Adivinaste la palabra: {palabra}")
-            return True  # Ganaste
+        if is_word_complete(blanks):
+            print(f"🏆 Congratulations! You guessed the word: {word}")
+            return True  # Win
 
-    print(f"Has perdido. La palabra era: {palabra}")
-    return False  # Perdiste
+    print(f"💀 Game over. The word was: {word}")
+    return False  # Lose
 
-
-
-# Ejecutar solo si es script principal
+# ▶️ RUN ONLY IF MAIN SCRIPT
 if __name__ == "__main__":
-    jugar_ahorcado()
+    play_hangman()
