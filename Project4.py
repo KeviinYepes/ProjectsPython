@@ -3,7 +3,7 @@ import random as rd
 AskName = input("What's your name? ")
 numeros = list(range(1,101))
 SecretNumber = rd.choice(numeros)
-print("I select a random number to 1 to 100 only for you. Try to guess it (You only have 8 LIVES)")
+print("🎲 I’ve picked a secret number between 1 and 100! Can you guess it? You’ve got 8 ❤️ lives—don’t waste them!")
 for i in range(1,9): 
     ask = int(input("Give me 1 number: "))
     if(ask < 1 or ask > 100):
