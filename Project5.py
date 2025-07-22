@@ -1,6 +1,6 @@
 import random as rd
 
-PALABRAS = ['rocaneth', 'coconeth', 'moaneth', 'pichaneth', 'sumisaneth']
+PALABRAS = ['kevin', 'estiven', 'yepes', 'villareal', 'developer']
 
 
 # Funciones 
