@@ -30,8 +30,8 @@ def update_blanks(word, blanks, letter):
 def is_word_complete(blanks):
     """✅ Returns True if there are no underscores left."""
     return "_" not in blanks
-
 # 🎮 MAIN GAME LOGIC
+
 def play_hangman(words=WORDS, lives=5):
     word = choose_word(words)
     blanks = create_blanks(word)
@@ -57,7 +57,6 @@ def play_hangman(words=WORDS, lives=5):
         if is_word_complete(blanks):
             print(f"🏆 Congratulations! You guessed the word: {word}")
             return True  # Win
-
     print(f"💀 Game over. The word was: {word}")
     return False  # Lose
 
