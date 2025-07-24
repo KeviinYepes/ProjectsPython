@@ -45,7 +45,6 @@ def play_hangman(words=WORDS, lives=5):
             print("⚠️ You didn't type anything. Try again.")
             continue
         letter = letter[0]  # Only take the first character if user types more than one
-
         hit = update_blanks(word, blanks, letter)
 
         if hit:
