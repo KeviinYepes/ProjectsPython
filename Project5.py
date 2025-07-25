@@ -1,6 +1,6 @@
 import random as rd
 
-WORDS = ['kevin', 'estiven', 'yepes', 'villareal', 'developer']
+WORDS = ['kevin', 'estiven', 'yepes', 'villareal', 'developer','cortes']
 
 # 🔧 FUNCTIONS
 def choose_word(words):
